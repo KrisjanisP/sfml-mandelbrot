@@ -1,0 +1,3 @@
+# sfml-mandelbrot
+
+work in progress...
