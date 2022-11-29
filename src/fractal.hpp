@@ -3,7 +3,6 @@
 
 typedef unsigned int uint;
 
-const uint COLORS = 64;
 
 class Fractal final : public sf::Drawable
 {
