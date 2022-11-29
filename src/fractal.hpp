@@ -31,8 +31,6 @@ private:
     void generate(uint tl[2], uint br[2]);
     void regenerate();
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-    bool belongs(float x, float y);
-    int iterations(float x, float y);
     void getColors(int iters, sf::Uint8 rgb[3], float x, float y);
     sf::Uint8 colors[COLORS][3];
     void precomputeColors();
