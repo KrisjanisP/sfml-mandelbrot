@@ -1,21 +1,18 @@
-#include "mandelbrot.hpp"
 #include <math.h>
-
-typedef unsigned char uint8;
+#include "mandelbrot.h"
 
 namespace mandelbrot {
-
     // returns color of a point in the mandelbrot plane
-    void color(float x, float y, int precision=20, uint8 rgb[3])
+    void color(float x, float y, uint8 res_rgb[3], int precision=20)
     {
         if(belongs(x,y,precision)){
-            rgb[0] = 255;
-            rgb[1] = 255;
-            rgb[2] = 255;
+            res_rgb[0] = 255;
+            res_rgb[1] = 255;
+            res_rgb[2] = 255;
         } else {
-            rgb[0] = 0;
-            rgb[1] = 0;
-            rgb[2] = 0;
+            res_rgb[0] = 0;
+            res_rgb[1] = 0;
+            res_rgb[2] = 0;
         }
     }
 
@@ -42,7 +39,7 @@ namespace mandelbrot {
         float p = sqrt((x-0.25)*(x-0.25)+y*y);
         if(x<=(p-2*p*p+0.25)) return true;
         if((x+1)*(x+1)+y*y<=0.0625) return true;
-        return mandelbrot_iterations(x,y,precision)==precision;
+        return iterations(x,y,precision)==precision;
     }
 
 };
