@@ -21,6 +21,10 @@ int main()
 
     Fractal fractal;
 
+    bool dragging = false;
+    Event::MouseButtonEvent pressed;
+    Event::MouseButtonEvent released;
+    Event::MouseMoveEvent cursor;
     while(window.isOpen()) {
         Event e;
         while(window.pollEvent(e)) {
@@ -31,9 +35,27 @@ int main()
                 sf::FloatRect visibleArea(0, 0, e.size.width, e.size.height);
                 window.setView(sf::View(visibleArea));
             }
+            if (e.type == Event::MouseButtonPressed)
+            {
+                dragging = true;
+                pressed = e.mouseButton;
+            }
+            if (e.type == Event::MouseButtonReleased)
+            {
+                dragging = false;
+                released = e.mouseButton;
+            }
+            if (e.type == Event::MouseMoved)
+            {
+                cursor = e.mouseMove;
+            }
         }
+        std::cout<<dragging<<std::endl;
         window.clear();
         window.draw(fractal);
+        if(dragging) {
+            fractal.setOrigin({(float)cursor.x, (float)cursor.y});
+        }
         window.display();
     }
 }

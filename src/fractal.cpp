@@ -30,5 +30,7 @@ void Fractal::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     texture.loadFromImage(image);
     sf::Sprite sprite;
     sprite.setTexture(texture);
+    sprite.setPosition(this->getPosition());
+    sprite.setOrigin(this->getOrigin());
     target.draw(sprite);
 }
