@@ -20,7 +20,7 @@ void Fractal::draw(sf::RenderTarget& target, sf::RenderStates states) const {
             float x, y;
             x = P_CENTER_X-PLANE_WIDTH+(2*PLANE_WIDTH*j)/(width-1);
             y = P_CENTER_Y-planeHeight+(2*planeHeight*i)/(height-1);
-            mandelbrot::color(x,y,&pixels[i*width*4+j*4+0],10);
+            mandelbrot::color(x,y,&pixels[i*width*4+j*4+0],15);
             pixels[i*width*4+j*4+3]=255;
         }
     }
