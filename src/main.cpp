@@ -13,7 +13,7 @@ using sf::VideoMode;
 using sf::Event;
 using sf::Keyboard;
 
-const int WIDTH = 600, HEIGHT=600;
+const int WIDTH = 600, HEIGHT=700;
 
 int main()
 {
