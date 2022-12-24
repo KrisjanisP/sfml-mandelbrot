@@ -10,6 +10,7 @@ public:
     void setPrecision(float precision);
 
     void recenterView(float x, float y);
+    sf::Vector2f getViewCenter();
 private:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };

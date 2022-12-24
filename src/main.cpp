@@ -54,7 +54,7 @@ int main()
         window.clear();
         window.draw(fractal);
         if(dragging) {
-            fractal.setOrigin({(float)cursor.x, (float)cursor.y});
+            fractal.setOrigin({(float)-cursor.x+pressed.x, (float)-cursor.y+pressed.y});
         }
         window.display();
     }
