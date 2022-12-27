@@ -1,19 +1,33 @@
 #include <math.h>
 #include "mandelbrot.h"
+#include <iostream>
 
 namespace mandelbrot {
     // returns color of a point in the mandelbrot plane
     void color(float x, float y, uint8 res_rgb[3], int precision=20)
     {
-        if(belongs(x,y,precision)){
-            res_rgb[0] = 255;
-            res_rgb[1] = 255;
-            res_rgb[2] = 255;
-        } else {
-            res_rgb[0] = 0;
-            res_rgb[1] = 0;
-            res_rgb[2] = 0;
+        double z = iterations(x,y,precision)/(float)precision;
+
+        float points[] = {0.0,0.16,0.42,0.6425,1.0};
+        uint8 colors[][3] = {  {0,7,100},
+                                {32,107,203},
+                                {237,255,255},
+                                {255,170,0},
+                                {0,2,0}};
+        for(int i=1;i<5;i++){ // whether z belongs to [points[i-1];points[i]]
+            float start = points[i-1];
+            float end = points[i];
+            if(z<start||z>end) continue;
+            float distance = end-start;
+            float covered = (z-start)/distance;
+            for(int j=0;j<3;j++)
+                res_rgb[j] = (colors[i][j]-colors[i-1][j])*covered+colors[i-1][j];
+            return;
         }
+        std::cout<<z<<std::endl;
+        for(int j=0;j<3;j++)
+            res_rgb[j] = 255*z;
+        return;
     }
 
     // returns number of iterations where absolute value doesn't seem sus

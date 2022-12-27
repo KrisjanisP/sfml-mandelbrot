@@ -34,7 +34,7 @@ void Fractal::updateMandelbrot() {
         for(int j=0;j<viewWidth;j++){
             float x, y;
             getPixelCoords(j,i,x,y);
-            mandelbrot::color(x,y,&pixels[i*viewWidth*4+j*4+0],15);
+            mandelbrot::color(x,y,&pixels[i*viewWidth*4+j*4+0],40);
             pixels[i*viewWidth*4+j*4+2]=100;
             pixels[i*viewWidth*4+j*4+3]=255;
         }
