@@ -58,6 +58,28 @@ int main()
             {
                 cursor = e.mouseMove;
             }
+            if (e.type == Event::KeyPressed)
+            {
+                if( e.key.code == sf::Keyboard::Up) {
+                    float zoom = fractal.getZoom();
+                    fractal.setZoom(zoom*1.3);
+                }
+                if(e.key.code == sf::Keyboard::Down) {
+                    float zoom = fractal.getZoom();
+                    fractal.setZoom(zoom/1.3);
+                }
+                if(e.key.code == sf::Keyboard::Left) {
+                    float precision = fractal.getPrecision();
+                    std::cout<<precision<<std::endl;
+                    if(precision<0.76) continue;
+                    fractal.setPrecision(precision/1.3);
+                }
+                if(e.key.code == sf::Keyboard::Right) {
+                    float precision = fractal.getPrecision();
+                    std::cout<<precision<<std::endl;
+                    fractal.setPrecision(precision*1.3);
+                }
+            }
         }
         window.clear();
 

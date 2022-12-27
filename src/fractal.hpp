@@ -5,10 +5,10 @@ class Fractal final : public sf::Drawable, public sf::Transformable
 public:
     Fractal(int width, int height);
 
-    float getZoom();
+    float getZoom() const;
     void setZoom(float zoom);
     
-    float getPrecision();
+    float getPrecision() const;
     void setPrecision(float precision);
 
     void setPlaneCenter(float x, float y);
@@ -20,5 +20,7 @@ public:
 private:
     int viewWidth, viewHeight;
     float planeCenterX, planeCenterY;
+    float planeWidth;
+    float precision;
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
