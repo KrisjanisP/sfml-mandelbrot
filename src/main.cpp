@@ -19,11 +19,10 @@ int main()
 {
     RenderWindow window(VideoMode(WIDTH,HEIGHT), "KPe Fraktals!");
 
-    Fractal fractal;
+    Fractal fractal(WIDTH,HEIGHT);
 
     bool dragging = false;
     Event::MouseButtonEvent pressed;
-    Event::MouseButtonEvent released;
     Event::MouseMoveEvent cursor;
     while(window.isOpen()) {
         Event e;
@@ -34,6 +33,7 @@ int main()
             {
                 sf::FloatRect visibleArea(0, 0, e.size.width, e.size.height);
                 window.setView(sf::View(visibleArea));
+                fractal.setViewSize(e.size.width, e.size.height);
             }
             if (e.type == Event::MouseButtonPressed)
             {
@@ -43,14 +43,23 @@ int main()
             if (e.type == Event::MouseButtonReleased)
             {
                 dragging = false;
-                released = e.mouseButton;
+                auto released = e.mouseButton;
+                fractal.setOrigin({(float)-cursor.x+pressed.x, (float)-cursor.y+pressed.y});
+                auto origin = fractal.getOrigin();
+                float adjustedOriginX = origin.x+window.getSize().x/2;
+                float adjustedOriginY = origin.y+window.getSize().y/2;
+                float planeCenterX, planeCenterY;
+                fractal.getPixelCoords(adjustedOriginX, adjustedOriginY, planeCenterX, planeCenterY);
+                std::cout<<origin.x<<" "<<origin.y<<std::endl;
+                std::cout<<planeCenterX<<" "<<planeCenterY<<std::endl;
+                fractal.setPlaneCenter(planeCenterX, planeCenterY);
+                fractal.setOrigin(0,0);
             }
             if (e.type == Event::MouseMoved)
             {
                 cursor = e.mouseMove;
             }
         }
-        std::cout<<dragging<<std::endl;
         window.clear();
         window.draw(fractal);
         if(dragging) {
