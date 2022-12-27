@@ -50,8 +50,6 @@ int main()
                 float adjustedOriginY = origin.y+window.getSize().y/2;
                 float planeCenterX, planeCenterY;
                 fractal.getPixelCoords(adjustedOriginX, adjustedOriginY, planeCenterX, planeCenterY);
-                std::cout<<origin.x<<" "<<origin.y<<std::endl;
-                std::cout<<planeCenterX<<" "<<planeCenterY<<std::endl;
                 fractal.setPlaneCenter(planeCenterX, planeCenterY);
                 fractal.setOrigin(0,0);
             }
