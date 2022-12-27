@@ -13,7 +13,7 @@ using sf::VideoMode;
 using sf::Event;
 using sf::Keyboard;
 
-const int WIDTH = 600, HEIGHT=700;
+const int WIDTH = 1000, HEIGHT=1000;
 
 int main()
 {
@@ -27,6 +27,7 @@ int main()
     while(window.isOpen()) {
         Event e;
         while(window.pollEvent(e)) {
+            
             if(e.type == Event::Closed)
                 window.close();
             if (e.type == Event::Resized)
@@ -59,6 +60,8 @@ int main()
             }
         }
         window.clear();
+        if(!dragging)
+            fractal.paint();
         window.draw(fractal);
         if(dragging) {
             fractal.setOrigin({(float)-cursor.x+pressed.x, (float)-cursor.y+pressed.y});

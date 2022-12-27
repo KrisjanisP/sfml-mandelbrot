@@ -15,6 +15,8 @@ public:
     void getPixelCoords(int px, int py, float& x, float& y) const;
 
     void setViewSize(int width, int heihgt);
+
+    void paint();
 private:
     int viewWidth, viewHeight;
     float planeCenterX, planeCenterY;

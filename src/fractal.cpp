@@ -29,21 +29,21 @@ void Fractal::getPixelCoords(int px, int py, float& x, float& y) const {
     return;
 }
 
-void Fractal::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    sf::Vector2u size = target.getSize();
-    int width = size.x;
-    int height = size.y;
-    for(int i=0;i<height;i++){
-        for(int j=0;j<width;j++){
+void Fractal::paint() {
+    for(int i=0;i<viewHeight;i++){
+        for(int j=0;j<viewWidth;j++){
             float x, y;
             getPixelCoords(j,i,x,y);
-            mandelbrot::color(x,y,&pixels[i*width*4+j*4+0],15);
-            pixels[i*width*4+j*4+2]=100;
-            pixels[i*width*4+j*4+3]=255;
+            mandelbrot::color(x,y,&pixels[i*viewWidth*4+j*4+0],15);
+            pixels[i*viewWidth*4+j*4+2]=100;
+            pixels[i*viewWidth*4+j*4+3]=255;
         }
     }
+}
+
+void Fractal::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     sf::Image image;
-    image.create(width,height,pixels);
+    image.create(viewWidth,viewHeight,pixels);
     sf::Texture texture;
     texture.loadFromImage(image);
     sf::Sprite sprite;
