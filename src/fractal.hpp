@@ -16,7 +16,7 @@ public:
 
     void setViewSize(int width, int heihgt);
 
-    void paint();
+    void updateMandelbrot();
 private:
     int viewWidth, viewHeight;
     float planeCenterX, planeCenterY;

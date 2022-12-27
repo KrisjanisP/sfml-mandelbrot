@@ -41,5 +41,4 @@ namespace mandelbrot {
         if((x+1)*(x+1)+y*y<=0.0625) return true;
         return iterations(x,y,precision)==precision;
     }
-
 };

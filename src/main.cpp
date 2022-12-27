@@ -60,12 +60,13 @@ int main()
             }
         }
         window.clear();
-        if(!dragging)
-            fractal.paint();
-        window.draw(fractal);
-        if(dragging) {
+
+        if(dragging)
             fractal.setOrigin({(float)-cursor.x+pressed.x, (float)-cursor.y+pressed.y});
-        }
+        else
+            fractal.updateMandelbrot();
+        
+        window.draw(fractal);
         window.display();
     }
 }

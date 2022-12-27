@@ -29,7 +29,7 @@ void Fractal::getPixelCoords(int px, int py, float& x, float& y) const {
     return;
 }
 
-void Fractal::paint() {
+void Fractal::updateMandelbrot() {
     for(int i=0;i<viewHeight;i++){
         for(int j=0;j<viewWidth;j++){
             float x, y;
